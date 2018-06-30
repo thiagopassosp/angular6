@@ -1,0 +1,26 @@
+<header class="jumbotron">
+  <h1 class="text-center">{{title}}</h1>
+</header>
+<main class="container">
+  <div class="row" *ngIf="mensagem && mensagem.tipo && mensagem.tipo == 'success'">
+    <div class="col-12">
+      <app-mensagem [texto]="mensagem.texto" [tipo]="mensagem.tipo" role="alert" dismiss-on-timeout="200"></app-mensagem>
+    </div>
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-sm-12">
+      <form class="inout-group">
+        <span class="input-group-prepend">
+          <a routerLink="/cadastro" class="btn btn-primary">Nova Foto</a>
+        </span>
+      </form>
+    </div>
+  </div>
+  <div class="row">
+    <card *ngFor="let foto of listaFotos" [foto]="foto" class="col-md-2">
+      <button (click)="excluir(foto)" class="btn btn-danger">Excluir</button>
+      <a [routerLink]=" ['/cadastro', foto._id]" class="btn btn-primary">Editar</a>
+    </card>
+  </div>
+</main>
